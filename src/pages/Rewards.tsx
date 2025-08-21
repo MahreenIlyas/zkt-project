@@ -1,8 +1,9 @@
 import React from 'react';
-import { Search, Copy, Trophy, Medal, Award, Star } from 'lucide-react';
+import { Search, Copy, Trophy, Medal, Award, Star, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 import Sidebar from '@/components/Sidebar';
 
 const Rewards: React.FC = () => {
@@ -144,31 +145,65 @@ const Rewards: React.FC = () => {
               </div>
             </div>
 
-            {/* Achievement Stats */}
+            {/* Detailed Achievement Cards */}
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="card-elegant p-6 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="w-8 h-8 text-primary" />
+              {[
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Legendary', earned: true },
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Rare', earned: false },
+                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
+              ].map((achievement, index) => (
+                <div key={index} className="card-elegant p-6 relative overflow-hidden">
+                  {/* Rarity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <Badge 
+                      variant="outline" 
+                      className={cn(
+                        "text-xs font-medium",
+                        achievement.rarity === 'Legendary' && "border-yellow-500 text-yellow-500",
+                        achievement.rarity === 'Rare' && "border-purple-500 text-purple-500",
+                        achievement.rarity === 'Common' && "border-muted-foreground text-muted-foreground"
+                      )}
+                    >
+                      {achievement.rarity}
+                    </Badge>
+                  </div>
+
+                  {/* Achievement Icon */}
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Trophy className="w-8 h-8 text-primary" />
+                  </div>
+
+                  {/* Achievement Info */}
+                  <div className="text-center space-y-2">
+                    <h4 className="font-semibold">{achievement.name}</h4>
+                    <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                  </div>
+
+                  {/* Status */}
+                  <div className="mt-4 text-center">
+                    {achievement.earned ? (
+                      <div className="flex items-center justify-center gap-2 text-success">
+                        <CheckCircle className="w-4 h-4" />
+                        <span className="text-sm font-medium">Earned Today</span>
+                      </div>
+                    ) : (
+                      <div className="text-sm text-destructive font-medium">
+                        Not Earned Yet
+                      </div>
+                    )}
+                  </div>
+
+                  {/* NFT Transfer Button for earned achievements */}
+                  {achievement.earned && (
+                    <Button variant="ghost" size="sm" className="w-full mt-3 text-xs">
+                      Your NFT has been transferred →
+                    </Button>
+                  )}
                 </div>
-                <h3 className="text-2xl font-bold mb-2">1</h3>
-                <p className="text-muted-foreground">Achievements Unlocked</p>
-              </div>
-              
-              <div className="card-elegant p-6 text-center">
-                <div className="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-warning" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">3</h3>
-                <p className="text-muted-foreground">In Progress</p>
-              </div>
-              
-              <div className="card-elegant p-6 text-center">
-                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Medal className="w-8 h-8 text-muted-foreground" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">30</h3>
-                <p className="text-muted-foreground">Total Days</p>
-              </div>
+              ))}
             </div>
           </div>
         </main>

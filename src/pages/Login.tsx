@@ -124,12 +124,15 @@ const Login: React.FC = () => {
             )}
 
             {step === 'email' && (
-              <div className="mt-6 text-center text-sm">
-                <span className="text-muted-foreground">Don't have an account? </span>
-                <button className="text-primary hover:text-primary-hover font-medium">
-                  Create one
-                </button>
-              </div>
+            <div className="mt-6 text-center text-sm">
+              <span className="text-muted-foreground">Don't have an account? </span>
+              <button 
+                onClick={() => navigate('/signup')}
+                className="text-primary hover:text-primary-hover font-medium"
+              >
+                Create one
+              </button>
+            </div>
             )}
           </div>
 

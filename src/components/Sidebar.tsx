@@ -6,14 +6,27 @@ import {
   Trophy, 
   Settings, 
   Bell,
-  Target
+  Target,
+  QrCode,
+  Calculator,
+  Flame
 } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 
 const sidebarItems = [
   { icon: Home, label: 'Dashboard', path: '/dashboard' },
-  { icon: Heart, label: 'Donations', path: '/donations' },
+  { 
+    icon: Heart, 
+    label: 'Donations', 
+    path: '/donations',
+    subItems: [
+      { label: 'HTG', path: '/donations' },
+      { label: 'STG', path: '/scan-to-give' }, 
+      { label: 'UTG', path: '/user-triggered-giving' },
+      { label: 'BTG', path: '/burn-to-give' },
+    ]
+  },
   { icon: Trophy, label: 'Rewards', path: '/rewards' },
   { icon: Target, label: 'DAO', path: '/dao' },
 ];
@@ -43,6 +56,27 @@ const Sidebar: React.FC = () => {
                 <item.icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
               </NavLink>
+              
+              {/* Sub-items for Donations */}
+              {item.subItems && (
+                <ul className="ml-8 mt-2 space-y-1">
+                  {item.subItems.map((subItem, subIndex) => (
+                    <li key={subIndex}>
+                      <NavLink
+                        to={subItem.path}
+                        className={({ isActive }) =>
+                          cn(
+                            "block px-4 py-2 text-sm transition-smooth text-muted-foreground hover:text-foreground",
+                            isActive && "text-primary font-medium"
+                          )
+                        }
+                      >
+                        {subItem.label}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

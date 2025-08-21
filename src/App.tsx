@@ -4,8 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Donations from "./pages/Donations";
+import ScanToGive from "./pages/ScanToGive";
+import UserTriggeredGiving from "./pages/UserTriggeredGiving";
+import BurnToGive from "./pages/BurnToGive";
 import Rewards from "./pages/Rewards";
 import DAO from "./pages/DAO";
 import NotFound from "./pages/NotFound";
@@ -21,8 +25,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/scan-to-give" element={<ScanToGive />} />
+          <Route path="/user-triggered-giving" element={<UserTriggeredGiving />} />
+          <Route path="/burn-to-give" element={<BurnToGive />} />
           <Route path="/rewards" element={<Rewards />} />
           <Route path="/dao" element={<DAO />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

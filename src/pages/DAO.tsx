@@ -66,86 +66,37 @@ const DAO: React.FC = () => {
               />
             </div>
 
-            {/* Active Proposals */}
+            {/* DAO Request Cards */}
             <div className="card-elegant p-6">
-              <h3 className="text-xl font-semibold mb-6">Active Proposals</h3>
+              <h3 className="text-xl font-semibold mb-6">DAO Requests</h3>
               
-              <div className="space-y-4">
-                {[
-                  {
-                    id: 'PROP-001',
-                    title: 'Increase Zakat Distribution Rate',
-                    description: 'Proposal to increase the automatic zakat distribution rate from 2.5% to 3% for enhanced charitable impact.',
-                    author: 'zakah.eth',
-                    timeLeft: '5 days left',
-                    votes: { yes: 856, no: 124 },
-                    status: 'active'
-                  },
-                  {
-                    id: 'PROP-002', 
-                    title: 'New Partnership with Islamic Relief',
-                    description: 'Establish strategic partnership with Islamic Relief organization for expanded donation channels.',
-                    author: 'community.eth',
-                    timeLeft: '12 days left',
-                    votes: { yes: 642, no: 89 },
-                    status: 'active'
-                  },
-                  {
-                    id: 'PROP-003',
-                    title: 'Platform Fee Reduction',
-                    description: 'Reduce platform operational fees from 1% to 0.5% to maximize charitable donations.',
-                    author: 'governance.eth',
-                    timeLeft: '2 days left',
-                    votes: { yes: 1203, no: 156 },
-                    status: 'passing'
-                  }
-                ].map((proposal, index) => (
-                  <div key={index} className="p-4 border border-border rounded-lg hover:border-primary/50 transition-smooth">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="outline" className="text-xs">
-                            {proposal.id}
-                          </Badge>
-                          <Badge 
-                            variant={proposal.status === 'passing' ? 'default' : 'secondary'}
-                            className="text-xs"
-                          >
-                            {proposal.status === 'passing' ? 'Passing' : 'Active'}
-                          </Badge>
-                        </div>
-                        <h4 className="font-semibold text-lg mb-2">{proposal.title}</h4>
-                        <p className="text-muted-foreground text-sm mb-3">{proposal.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>By {proposal.author}</span>
-                          <span>{proposal.timeLeft}</span>
-                        </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[1, 2, 3].map((request) => (
+                  <div key={request} className="card-elegant p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">
+                          Update zakat slider %age from 0.5 to 1 %
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Update zakat slider %age from 0.5 to 1 %
+                        </p>
                       </div>
-                    </div>
-                    
-                    {/* Voting Results */}
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Yes ({proposal.votes.yes} votes)</span>
-                        <span>No ({proposal.votes.no} votes)</span>
+
+                      <div className="flex gap-3">
+                        <Button 
+                          className="flex-1 bg-success hover:bg-success/90 text-success-foreground"
+                          size="sm"
+                        >
+                          Accept
+                        </Button>
+                        <Button 
+                          className="flex-1 bg-destructive hover:bg-destructive/90 text-destructive-foreground"
+                          size="sm"
+                        >
+                          Reject
+                        </Button>
                       </div>
-                      <div className="w-full bg-muted rounded-full h-2">
-                        <div 
-                          className="h-2 bg-success rounded-full transition-all duration-500"
-                          style={{ 
-                            width: `${(proposal.votes.yes / (proposal.votes.yes + proposal.votes.no)) * 100}%` 
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex justify-end gap-2 mt-4">
-                      <Button variant="outline" size="sm">
-                        Vote No
-                      </Button>
-                      <Button size="sm" className="bg-primary hover:bg-primary-hover">
-                        Vote Yes
-                      </Button>
                     </div>
                   </div>
                 ))}

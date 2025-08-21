@@ -127,36 +127,46 @@ const Donations: React.FC = () => {
             <DialogTitle className="text-xl font-semibold">Select Duration Of Hold</DialogTitle>
           </DialogHeader>
           
-          <div className="py-6">
-            <div className="grid grid-cols-4 gap-4 mb-8">
-              {durations.map((duration) => (
-                <button
-                  key={duration.value}
-                  onClick={() => setSelectedDuration(duration.value as any)}
-                  className={`
-                    px-6 py-3 rounded-full border-2 font-medium transition-smooth
-                    ${selectedDuration === duration.value 
-                      ? 'bg-primary text-primary-foreground border-primary' 
-                      : 'border-primary text-primary hover:bg-primary/10'
-                    }
-                  `}
-                >
-                  {duration.label}
-                </button>
-              ))}
+            {/* Enhanced Hold to Give Modal */}
+            <div className="py-6 space-y-6">
+              <div className="grid grid-cols-4 gap-4 mb-8">
+                {durations.map((duration) => (
+                  <button
+                    key={duration.value}
+                    onClick={() => setSelectedDuration(duration.value as any)}
+                    className={`
+                      px-6 py-3 rounded-full border-2 font-medium transition-smooth
+                      ${selectedDuration === duration.value 
+                        ? 'bg-primary text-primary-foreground border-primary' 
+                        : 'border-primary text-primary hover:bg-primary/10'
+                      }
+                    `}
+                  >
+                    {duration.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Enter Zakat Amount */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold">Enter Zakat Amount in ZKTC</h4>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-2">Amount in ZKTC</p>
+                  <div className="text-3xl font-bold text-primary mb-4">320.40</div>
+                </div>
+              </div>
+
+              <p className="text-center text-muted-foreground mb-8">
+                Select a hold duration that feels right for you—the longer you hold, the greater the impact of your giving
+              </p>
+
+              <Button 
+                onClick={() => setIsModalOpen(false)}
+                className="w-full bg-primary hover:bg-primary-hover text-primary-foreground h-12"
+              >
+                Lock Amount
+              </Button>
             </div>
-
-            <p className="text-center text-muted-foreground mb-8">
-              Select a hold duration that feels right for you—the longer you hold, the greater the impact of your giving
-            </p>
-
-            <Button 
-              onClick={() => setIsModalOpen(false)}
-              className="w-full bg-primary hover:bg-primary-hover text-primary-foreground h-12"
-            >
-              Next
-            </Button>
-          </div>
         </DialogContent>
       </Dialog>
     </div>
