@@ -1,10 +1,11 @@
 import React from 'react';
-import { Search, Copy, Trophy, Medal, Award, Star, CheckCircle } from 'lucide-react';
+import { Search, Copy, Trophy, Medal, Award, Star, CheckCircle, Crown, Gem, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import Sidebar from '@/components/Sidebar';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 const Rewards: React.FC = () => {
   const rewards = [
@@ -47,8 +48,9 @@ const Rewards: React.FC = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-background">
-      <Sidebar />
+    <AnimatedBackground>
+      <div className="flex h-screen bg-background/80 backdrop-blur-sm">
+        <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
@@ -83,24 +85,41 @@ const Rewards: React.FC = () => {
               </Button>
             </div>
 
-            {/* Rewards Grid */}
+            {/* Enhanced Rewards Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {rewards.map((reward, index) => (
-                <div key={index} className="card-elegant p-6 transition-smooth hover:scale-[1.02]">
-                  <div className={`w-12 h-12 ${reward.bgColor} rounded-xl flex items-center justify-center mb-4`}>
-                    <reward.icon className={`w-6 h-6 ${reward.textColor}`} />
+                <div key={index} className="card-elegant p-6 transition-all duration-300 hover:scale-[1.05] hover:shadow-2xl group relative overflow-hidden">
+                  {/* Glow effect */}
+                  <div className={`absolute inset-0 ${reward.bgColor} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}></div>
+                  
+                  <div className={`w-16 h-16 ${reward.bgColor} rounded-2xl flex items-center justify-center mb-4 relative z-10 transition-all duration-300 group-hover:scale-110 shadow-lg`}>
+                    <reward.icon className={`w-8 h-8 ${reward.textColor} transition-all duration-300 group-hover:drop-shadow-lg`} />
+                    {reward.progress === 100 && (
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-success rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-3 h-3 text-success-foreground" />
+                      </div>
+                    )}
                   </div>
                   
-                  <h3 className="text-lg font-semibold mb-2">{reward.tier}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{reward.progress}% Complete</p>
-                  <p className="text-sm font-medium mb-4">{reward.days}</p>
+                  <h3 className="text-xl font-bold mb-2 relative z-10">{reward.tier}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 relative z-10">{reward.progress}% Complete</p>
+                  <p className="text-sm font-medium mb-4 relative z-10 text-primary">{reward.days}</p>
                   
-                  <div className="w-full bg-muted rounded-full h-2">
+                  <div className="w-full bg-muted rounded-full h-3 relative z-10 overflow-hidden">
                     <div 
-                      className={`h-2 rounded-full ${reward.color} transition-all duration-500`}
+                      className={`h-3 rounded-full ${reward.color} transition-all duration-700 shadow-sm relative`}
                       style={{ width: `${reward.progress}%` }}
-                    ></div>
+                    >
+                      <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+                    </div>
                   </div>
+
+                  {reward.progress === 100 && (
+                    <Badge variant="success" className="mt-3 animate-bounce">
+                      <Sparkles className="w-3 h-3 mr-1" />
+                      Achieved!
+                    </Badge>
+                  )}
                 </div>
               ))}
             </div>
@@ -145,61 +164,90 @@ const Rewards: React.FC = () => {
               </div>
             </div>
 
-            {/* Detailed Achievement Cards */}
+            {/* Enhanced Achievement Cards */}
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Legendary', earned: true },
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Rare', earned: false },
-                { name: 'First Donation', description: 'Lorem ipsum text', rarity: 'Common', earned: true },
+                { name: 'First Donation', description: 'Made your very first charitable donation', rarity: 'Common', earned: true, icon: Trophy },
+                { name: 'Zakat Master', description: 'Completed 100 consecutive days of giving', rarity: 'Legendary', earned: true, icon: Crown },
+                { name: 'Generous Heart', description: 'Donated over 1000 ZKTC in total', rarity: 'Common', earned: true, icon: Medal },
+                { name: 'Community Builder', description: 'Invited 10 friends to join the platform', rarity: 'Common', earned: true, icon: Star },
+                { name: 'Diamond Giver', description: 'Reached Platinum tier status', rarity: 'Rare', earned: false, icon: Gem },
+                { name: 'Early Adopter', description: 'Joined during the beta launch', rarity: 'Common', earned: true, icon: Award },
               ].map((achievement, index) => (
-                <div key={index} className="card-elegant p-6 relative overflow-hidden">
-                  {/* Rarity Badge */}
-                  <div className="absolute top-4 right-4">
+                <div key={index} className="card-elegant p-6 relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
+                  {/* Animated background based on rarity */}
+                  {achievement.rarity === 'Legendary' && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-500/5 animate-pulse"></div>
+                  )}
+                  {achievement.rarity === 'Rare' && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/5"></div>
+                  )}
+
+                  {/* Enhanced Rarity Badge */}
+                  <div className="absolute top-4 right-4 z-10">
                     <Badge 
-                      variant="outline" 
-                      className={cn(
-                        "text-xs font-medium",
-                        achievement.rarity === 'Legendary' && "border-yellow-500 text-yellow-500",
-                        achievement.rarity === 'Rare' && "border-purple-500 text-purple-500",
-                        achievement.rarity === 'Common' && "border-muted-foreground text-muted-foreground"
-                      )}
+                      variant={
+                        achievement.rarity === 'Legendary' ? 'legendary' :
+                        achievement.rarity === 'Rare' ? 'rare' : 'common'
+                      }
+                      className="font-bold shadow-lg"
                     >
+                      {achievement.rarity === 'Legendary' && <Crown className="w-3 h-3 mr-1" />}
+                      {achievement.rarity === 'Rare' && <Gem className="w-3 h-3 mr-1" />}
                       {achievement.rarity}
                     </Badge>
                   </div>
 
-                  {/* Achievement Icon */}
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Trophy className="w-8 h-8 text-primary" />
+                  {/* Enhanced Achievement Icon */}
+                  <div className={cn(
+                    "w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 shadow-lg relative",
+                    achievement.rarity === 'Legendary' && "bg-gradient-to-br from-yellow-500/20 to-orange-500/10 shadow-yellow-500/20",
+                    achievement.rarity === 'Rare' && "bg-gradient-to-br from-purple-500/20 to-pink-500/10 shadow-purple-500/20",
+                    achievement.rarity === 'Common' && "bg-primary/10 shadow-primary/20"
+                  )}>
+                    <achievement.icon className={cn(
+                      "w-10 h-10 transition-all duration-300",
+                      achievement.rarity === 'Legendary' && "text-yellow-500 drop-shadow-lg",
+                      achievement.rarity === 'Rare' && "text-purple-500 drop-shadow-lg",
+                      achievement.rarity === 'Common' && "text-primary"
+                    )} />
+                    
+                    {achievement.earned && (
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-success rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                        <CheckCircle className="w-4 h-4 text-success-foreground" />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Achievement Info */}
-                  <div className="text-center space-y-2">
-                    <h4 className="font-semibold">{achievement.name}</h4>
-                    <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                  {/* Enhanced Achievement Info */}
+                  <div className="text-center space-y-3 relative z-10">
+                    <h4 className="font-bold text-lg">{achievement.name}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{achievement.description}</p>
                   </div>
 
-                  {/* Status */}
-                  <div className="mt-4 text-center">
+                  {/* Enhanced Status */}
+                  <div className="mt-6 text-center">
                     {achievement.earned ? (
-                      <div className="flex items-center justify-center gap-2 text-success">
-                        <CheckCircle className="w-4 h-4" />
-                        <span className="text-sm font-medium">Earned Today</span>
+                      <div className="flex items-center justify-center gap-2 text-success font-medium">
+                        <Sparkles className="w-4 h-4 animate-pulse" />
+                        <span className="text-sm">Earned Today</span>
                       </div>
                     ) : (
-                      <div className="text-sm text-destructive font-medium">
+                      <div className="text-sm text-muted-foreground font-medium opacity-75">
                         Not Earned Yet
                       </div>
                     )}
                   </div>
 
-                  {/* NFT Transfer Button for earned achievements */}
+                  {/* Enhanced NFT Transfer Button */}
                   {achievement.earned && (
-                    <Button variant="ghost" size="sm" className="w-full mt-3 text-xs">
-                      Your NFT has been transferred →
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full mt-4 text-xs font-medium bg-primary/5 border-primary/20 hover:bg-primary/10 transition-all duration-300"
+                    >
+                      <Gem className="w-3 h-3 mr-2" />
+                      NFT Transferred →
                     </Button>
                   )}
                 </div>
@@ -209,6 +257,7 @@ const Rewards: React.FC = () => {
         </main>
       </div>
     </div>
+    </AnimatedBackground>
   );
 };
 

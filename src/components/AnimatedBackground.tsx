@@ -5,47 +5,59 @@ interface AnimatedBackgroundProps {
 const AnimatedBackground = ({ children }: AnimatedBackgroundProps) => {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Animated gradient orbs */}
+      {/* Enhanced animated gradient orbs - more prominent */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-primary-glow/8 rounded-full blur-3xl animate-bounce" style={{ animationDuration: '6s' }}></div>
-        <div className="absolute -bottom-40 right-1/4 w-64 h-64 bg-accent/12 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-60 -right-60 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 to-primary-glow/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/3 -left-60 w-[700px] h-[700px] bg-gradient-to-tr from-primary-glow/18 to-accent/12 rounded-full blur-3xl animate-bounce" style={{ animationDuration: '8s' }}></div>
+        <div className="absolute -bottom-60 right-1/5 w-[500px] h-[500px] bg-gradient-to-tl from-accent/20 to-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-primary/8 to-success/6 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4s' }}></div>
       </div>
 
-      {/* Floating particles */}
+      {/* Enhanced floating particles - more visible */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+            className="absolute bg-primary/40 rounded-full animate-float"
             style={{
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${4 + Math.random() * 2}s`
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
             }}
           ></div>
         ))}
       </div>
 
-      {/* Moving geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden opacity-[0.03]">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-primary rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
-        <div className="absolute bottom-1/4 right-1/3 w-24 h-24 border border-primary-glow rotate-12 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
+      {/* Enhanced moving geometric shapes - more prominent */}
+      <div className="absolute inset-0 overflow-hidden opacity-[0.08]">
+        <div className="absolute top-1/6 left-1/5 w-40 h-40 border-2 border-primary rotate-45 animate-spin" style={{ animationDuration: '25s' }}></div>
+        <div className="absolute bottom-1/5 right-1/4 w-32 h-32 border-2 border-primary-glow rotate-12 animate-spin" style={{ animationDuration: '18s', animationDirection: 'reverse' }}></div>
+        <div className="absolute top-2/3 left-1/3 w-24 h-24 border border-accent rounded-full animate-pulse" style={{ animationDuration: '3s' }}></div>
+        <div className="absolute top-1/2 right-1/6 w-28 h-28 border border-primary transform rotate-45 animate-bounce" style={{ animationDuration: '6s' }}></div>
       </div>
 
-      {/* Subtle grid pattern */}
+      {/* Enhanced grid pattern - more visible */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage: `
-            linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
+            linear-gradient(hsl(var(--primary)) 1.5px, transparent 1.5px),
+            linear-gradient(90deg, hsl(var(--primary)) 1.5px, transparent 1.5px)
           `,
-          backgroundSize: '50px 50px',
-          animation: 'gridMove 30s linear infinite'
+          backgroundSize: '40px 40px',
+          animation: 'gridMove 25s linear infinite'
         }}
       ></div>
+
+      {/* Flowing light streaks */}
+      <div className="absolute inset-0 overflow-hidden opacity-[0.06]">
+        <div className="absolute top-0 left-1/4 w-0.5 h-full bg-gradient-to-b from-transparent via-primary to-transparent animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }}></div>
+        <div className="absolute top-0 right-1/3 w-0.5 h-full bg-gradient-to-b from-transparent via-primary-glow to-transparent animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }}></div>
+        <div className="absolute left-0 top-1/3 w-full h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent animate-pulse" style={{ animationDelay: '1s', animationDuration: '6s' }}></div>
+      </div>
 
       {/* Content */}
       <div className="relative z-10">
