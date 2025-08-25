@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Search, Copy, Filter } from 'lucide-react';
+import { Search, Copy, Clock, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Progress } from '@/components/ui/progress';
 import Sidebar from '@/components/Sidebar';
+import MetricCard from '@/components/ui/metric-card';
 
 const Donations: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

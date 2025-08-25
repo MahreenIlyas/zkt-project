@@ -9,7 +9,7 @@ import Sidebar from '@/components/Sidebar';
 const BurnToGive: React.FC = () => {
   const [burnAmount, setBurnAmount] = useState('');
   const [currency, setCurrency] = useState('ZKTC');
-  
+
   const recentPurchases = [
     {
       address: '12412984ndqus..',

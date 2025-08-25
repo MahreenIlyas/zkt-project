@@ -16,11 +16,11 @@
     --popover: 218 25% 12%;
     --popover-foreground: 210 40% 98%;
 
-    /* Brand colors - Teal/Cyan theme */
-    --primary: 188 94% 43%;
+    /* Brand colors - Blue theme to match reference */
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 210 40% 98%;
-    --primary-hover: 188 94% 38%;
-    --primary-glow: 188 94% 50%;
+    --primary-hover: 217.2 91.2% 54.8%;
+    --primary-glow: 217.2 91.2% 64.8%;
 
     /* Secondary teal variations */
     --secondary: 218 25% 15%;
@@ -29,7 +29,7 @@
     --muted: 218 25% 20%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 188 94% 43%;
+    --accent: 217.2 91.2% 59.8%;
     --accent-foreground: 210 40% 98%;
 
     /* Status colors */
@@ -45,7 +45,7 @@
     /* UI Elements */
     --border: 218 25% 20%;
     --input: 218 25% 15%;
-    --ring: 188 94% 43%;
+    --ring: 217.2 91.2% 59.8%;
 
     --radius: 0.75rem;
 
@@ -66,12 +66,12 @@
     /* Sidebar variables for consistency */
     --sidebar-background: 218 25% 12%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 188 94% 43%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
     --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 218 25% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 218 25% 20%;
-    --sidebar-ring: 188 94% 43%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
 
     --sidebar-background: 0 0% 98%;
 

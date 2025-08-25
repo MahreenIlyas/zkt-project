@@ -1,27 +1,43 @@
 import React, { useState } from 'react';
-import { Search, Copy, QrCode, CheckCircle } from 'lucide-react';
+import { Search, Copy, QrCode, Camera, Star, MapPin, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Sidebar from '@/components/Sidebar';
 
 const ScanToGive: React.FC = () => {
-  const [selectedNgo, setSelectedNgo] = useState<string>('');
+  const [isScanning, setIsScanning] = useState(false);
 
   const verifiedNgos = [
     {
-      id: 'shukat-khanam',
-      name: 'Shukat Khanam Trust Hospital.',
-      address: '122341298 4ndqus..',
-      logo: '🏥',
-      country: 'PK'
+      id: 'children-relief',
+      name: 'Children Relief Foundation',
+      description: 'Providing education and healthcare to underprivileged children worldwide',
+      logo: '🏫',
+      rating: 4.8,
+      location: 'Global',
+      donors: '15,420 donors',
+      totalRaised: '2.4M ZKTC'
     },
     {
-      id: 'edhi-foundation', 
-      name: 'Edhi Foundation',
-      address: '452412298 4ndqus..',
-      logo: '🏛️',
-      country: 'PK'
+      id: 'clean-water',
+      name: 'Clean Water Initiative',
+      description: 'Building wells and water purification systems in rural communities',
+      logo: '💧',
+      rating: 4.9,
+      location: 'Africa',
+      donors: '12,330 donors',
+      totalRaised: '1.8M ZKTC'
+    },
+    {
+      id: 'food-security',
+      name: 'Food Security Network',
+      description: 'Fighting hunger through sustainable food programs and emergency relief',
+      logo: '🍽️',
+      rating: 4.7,
+      location: 'Asia',
+      donors: '18,750 donors',
+      totalRaised: '3.1M ZKTC'
     }
   ];
 
@@ -55,100 +71,109 @@ const ScanToGive: React.FC = () => {
         {/* Main Content */}
         <main className="flex-1 overflow-auto p-6">
           <div className="space-y-6">
-            <h1 className="text-2xl font-bold">Scan to Give</h1>
+            {/* Page Header */}
+            <div className="flex items-center gap-3">
+              <QrCode className="w-6 h-6 text-primary" />
+              <div>
+                <h1 className="text-2xl font-bold">Scan to Give</h1>
+                <p className="text-muted-foreground">Scan QR codes to donate to verified NGOs instantly</p>
+              </div>
+            </div>
 
             {/* QR Scanner Section */}
-            <div className="card-elegant p-8">
-              <div className="flex flex-col items-center space-y-6">
-                {/* QR Code Display */}
-                <div className="relative">
-                  <div className="w-64 h-64 bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-primary/30">
-                    {/* QR Code Placeholder */}
-                    <div className="w-48 h-48 bg-foreground rounded-lg flex items-center justify-center">
-                      <div className="grid grid-cols-8 gap-1">
-                        {Array.from({ length: 64 }).map((_, i) => (
-                          <div 
-                            key={i} 
-                            className={`w-2 h-2 ${Math.random() > 0.5 ? 'bg-background' : 'bg-foreground'}`}
-                          />
-                        ))}
-                      </div>
+            <div className="card-elegant p-6">
+              <h3 className="text-xl font-semibold mb-2">QR Code Scanner</h3>
+              <p className="text-muted-foreground mb-6">Point your camera at an NGO's QR code to start donating</p>
+              
+              <div className="flex justify-center mb-6">
+                <div className="relative w-80 h-80 bg-muted rounded-lg border-2 border-dashed border-border flex items-center justify-center">
+                  {!isScanning ? (
+                    <div className="text-center">
+                      <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                      <p className="text-muted-foreground mb-4">Click to start scanning</p>
                     </div>
-                  </div>
-                  
-                  {/* QR Scanner Corners */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-                  <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
-                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+                  ) : (
+                    <div className="text-center">
+                      <div className="w-48 h-48 bg-card rounded-lg border-2 border-primary animate-pulse mb-4"></div>
+                      <p className="text-primary font-medium">Scanning...</p>
+                    </div>
+                  )}
                 </div>
+              </div>
 
-                {selectedNgo ? (
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2">
-                      {verifiedNgos.find(ngo => ngo.id === selectedNgo)?.name}
-                    </h3>
-                    <p className="text-muted-foreground">Verified NGO Selected</p>
-                  </div>
-                ) : (
-                  <div className="text-center">
-                    <QrCode className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <p className="text-muted-foreground">Scan QR code to select NGO</p>
-                  </div>
-                )}
+              <div className="text-center">
+                <Button 
+                  onClick={() => setIsScanning(!isScanning)}
+                  className="bg-primary hover:bg-primary-hover"
+                  size="lg"
+                >
+                  {isScanning ? 'Stop Scanning' : 'Start Scanning'}
+                </Button>
               </div>
             </div>
 
             {/* Verified NGOs */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold">Verified NGO's</h3>
-                <Button variant="ghost" className="text-primary">
-                  View All
-                </Button>
+              <div className="flex items-center gap-2">
+                <QrCode className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-semibold">Verified NGOs</h3>
+              </div>
+              <p className="text-muted-foreground">Browse and donate to verified charitable organizations</p>
+
+              {/* Search NGOs */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                <Input
+                  placeholder="Search NGOs..."
+                  className="pl-10 bg-muted border-0"
+                />
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {verifiedNgos.map((ngo) => (
-                  <div 
-                    key={ngo.id}
-                    className="card-elegant p-4 hover:border-primary/50 transition-smooth cursor-pointer"
-                    onClick={() => setSelectedNgo(ngo.id)}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <span className="text-2xl">{ngo.logo}</span>
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-semibold">{ngo.name}</h4>
-                            <CheckCircle className="w-4 h-4 text-primary" />
-                          </div>
-                          <p className="text-sm text-muted-foreground">{ngo.address}</p>
-                        </div>
+                  <div key={ngo.id} className="card-elegant p-6 hover:border-primary/50 transition-smooth">
+                    <div className="flex items-start gap-4">
+                      {/* NGO Icon */}
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <span className="text-2xl">{ngo.logo}</span>
                       </div>
                       
-                      <Button 
-                        size="sm"
-                        className={selectedNgo === ngo.id ? "bg-primary hover:bg-primary-hover" : ""}
-                        variant={selectedNgo === ngo.id ? "default" : "outline"}
-                      >
-                        {selectedNgo === ngo.id ? "Selected" : "Donate now"}
-                      </Button>
+                      {/* NGO Info */}
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <h4 className="font-semibold text-lg">{ngo.name}</h4>
+                            <p className="text-sm text-muted-foreground mb-2">{ngo.description}</p>
+                          </div>
+                          <Button className="bg-primary hover:bg-primary-hover">
+                            Donate
+                          </Button>
+                        </div>
+                        
+                        {/* Stats */}
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                            <span className="font-medium">{ngo.rating}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <span>{ngo.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Users className="w-4 h-4" />
+                            <span>{ngo.donors}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-2 text-sm">
+                          <span className="text-muted-foreground">Total raised: </span>
+                          <span className="font-semibold text-primary">{ngo.totalRaised}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Navigation */}
-              <div className="flex justify-between items-center pt-4">
-                <Button variant="ghost" disabled className="text-muted-foreground">
-                  Previous
-                </Button>
-                <Button variant="ghost" className="text-primary">
-                  Next
-                </Button>
               </div>
             </div>
           </div>
