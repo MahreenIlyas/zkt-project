@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
-import { Search, Copy, Clock, TrendingUp } from 'lucide-react';
+import { Search, Copy, Clock, TrendingUp, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Progress } from '@/components/ui/progress';
 import Sidebar from '@/components/Sidebar';
-import MetricCard from '@/components/ui/metric-card';
 
 const Donations: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDuration, setSelectedDuration] = useState<'30' | '90' | '180' | '360'>('90');
+  const [selectedDuration, setSelectedDuration] = useState<'360' | '180' | '90' | '30'>('360');
+  const [holdAmount, setHoldAmount] = useState('');
 
   const durations = [
-    { value: '360', label: '360 Days' },
-    { value: '180', label: '180 Days' },
-    { value: '90', label: '90 Days' },
-    { value: '30', label: '30 Days' },
+    { value: '360', label: '360 Days', apy: '+12% APY' },
+    { value: '180', label: '180 Days', apy: '+8% APY' },
+    { value: '90', label: '90 Days', apy: '+5% APY' },
+    { value: '30', label: '30 Days', apy: '+2% APY' },
   ];
 
-  const holdToGiveData = [
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
-    { address: '12412984ndqus..', time: '12:30 +5 GMT', holdAmount: 'ZKTC50.000', holdTime: '30 days', donation: '10 ZKTC' },
+  const currentHoldings = [
+    { 
+      amount: '1,000 ZKTC', 
+      duration: '180 Days', 
+      remaining: '99 days remaining', 
+      rewards: '40 ZKTC',
+      progress: 45 
+    },
+    { 
+      amount: '500 ZKTC', 
+      duration: '90 Days', 
+      remaining: '18 days remaining', 
+      rewards: '20 ZKTC',
+      progress: 80 
+    }
   ];
 
   return (
@@ -60,117 +64,96 @@ const Donations: React.FC = () => {
         {/* Main Content */}
         <main className="flex-1 overflow-auto p-6">
           <div className="space-y-6">
-            {/* Hold to Give Section */}
-            <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold">Hold to Give</h1>
-              <Button 
-                onClick={() => setIsModalOpen(true)}
-                className="bg-primary hover:bg-primary-hover text-primary-foreground"
-              >
-                Hold to Give
-              </Button>
+            {/* Page Header */}
+            <div className="flex items-center gap-3">
+              <Clock className="w-6 h-6 text-primary" />
+              <div>
+                <h1 className="text-2xl font-bold">Hold to Give</h1>
+                <p className="text-muted-foreground">Lock your tokens and earn rewards while supporting charity</p>
+              </div>
             </div>
 
-            {/* Sidebar Navigation */}
-            <div className="flex gap-4">
-              {['HTG', 'STG', 'UTG', 'BTG'].map((category) => (
-                <button 
-                  key={category}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth"
-                >
-                  {category}
-                </button>
-              ))}
+            {/* Start New Hold */}
+            <div className="card-elegant p-6">
+              <h3 className="text-xl font-semibold mb-2">Start New Hold</h3>
+              <p className="text-muted-foreground mb-6">Choose duration and amount to start earning rewards</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                {durations.map((duration) => (
+                  <button
+                    key={duration.value}
+                    onClick={() => setSelectedDuration(duration.value as any)}
+                    className={`
+                      p-4 rounded-lg border-2 text-center transition-smooth
+                      ${selectedDuration === duration.value 
+                        ? 'border-primary bg-primary/10' 
+                        : 'border-border hover:border-primary/50'
+                      }
+                    `}
+                  >
+                    <div className="font-semibold text-lg">{duration.label}</div>
+                    <div className="text-sm text-primary font-medium">{duration.apy}</div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium">Amount (ZKTC)</label>
+                <Input
+                  placeholder="Enter amount to hold"
+                  value={holdAmount}
+                  onChange={(e) => setHoldAmount(e.target.value)}
+                  className="h-12"
+                />
+                <Button className="w-full bg-primary hover:bg-primary-hover h-12">
+                  <Lock className="w-4 h-4 mr-2" />
+                  Start Hold
+                </Button>
+              </div>
             </div>
 
-            {/* Hold to Give Table */}
-            <div className="card-elegant overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left p-4 font-medium text-primary">Wallet Address</th>
-                      <th className="text-left p-4 font-medium text-primary">Hold Amount</th>
-                      <th className="text-left p-4 font-medium text-primary">Hold Time</th>
-                      <th className="text-left p-4 font-medium text-primary">Donation Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {holdToGiveData.map((item, index) => (
-                      <tr key={index} className="border-b border-border last:border-0">
-                        <td className="p-4">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center">
-                              <Copy className="w-4 h-4 text-muted-foreground" />
-                            </div>
-                            <div>
-                              <div className="font-medium">{item.address}</div>
-                              <div className="text-sm text-muted-foreground">{item.time}</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 font-medium">{item.holdAmount}</td>
-                        <td className="p-4 font-medium">{item.holdTime}</td>
-                        <td className="p-4 font-medium text-primary">{item.donation}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            {/* Current Holdings */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-semibold">Current Holdings</h3>
+              </div>
+              <p className="text-muted-foreground">Track your active holds and earned rewards</p>
+
+              <div className="space-y-4">
+                {currentHoldings.map((holding, index) => (
+                  <div key={index} className="card-elegant p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Lock className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-lg">{holding.amount}</div>
+                          <div className="text-sm text-muted-foreground">• {holding.duration}</div>
+                        </div>
+                      </div>
+                      <Button variant="outline" size="sm">
+                        Details
+                      </Button>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">{holding.remaining} • Rewards: {holding.rewards}</span>
+                        <span className="font-medium">Progress</span>
+                        <span className="font-semibold">{holding.progress}%</span>
+                      </div>
+                      <Progress value={holding.progress} className="h-2" />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </main>
       </div>
 
-      {/* Duration Selection Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-semibold">Select Duration Of Hold</DialogTitle>
-          </DialogHeader>
-          
-            {/* Enhanced Hold to Give Modal */}
-            <div className="py-6 space-y-6">
-              <div className="grid grid-cols-4 gap-4 mb-8">
-                {durations.map((duration) => (
-                  <button
-                    key={duration.value}
-                    onClick={() => setSelectedDuration(duration.value as any)}
-                    className={`
-                      px-6 py-3 rounded-full border-2 font-medium transition-smooth
-                      ${selectedDuration === duration.value 
-                        ? 'bg-primary text-primary-foreground border-primary' 
-                        : 'border-primary text-primary hover:bg-primary/10'
-                      }
-                    `}
-                  >
-                    {duration.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Enter Zakat Amount */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold">Enter Zakat Amount in ZKTC</h4>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-2">Amount in ZKTC</p>
-                  <div className="text-3xl font-bold text-primary mb-4">320.40</div>
-                </div>
-              </div>
-
-              <p className="text-center text-muted-foreground mb-8">
-                Select a hold duration that feels right for you—the longer you hold, the greater the impact of your giving
-              </p>
-
-              <Button 
-                onClick={() => setIsModalOpen(false)}
-                className="w-full bg-primary hover:bg-primary-hover text-primary-foreground h-12"
-              >
-                Lock Amount
-              </Button>
-            </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

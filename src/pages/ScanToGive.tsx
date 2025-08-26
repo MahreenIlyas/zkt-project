@@ -86,15 +86,15 @@ const ScanToGive: React.FC = () => {
               <p className="text-muted-foreground mb-6">Point your camera at an NGO's QR code to start donating</p>
               
               <div className="flex justify-center mb-6">
-                <div className="relative w-80 h-80 bg-muted rounded-lg border-2 border-dashed border-border flex items-center justify-center">
+                <div className="relative w-full max-w-md h-64 bg-muted/30 rounded-lg border-2 border-dashed border-border flex items-center justify-center">
                   {!isScanning ? (
                     <div className="text-center">
                       <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground mb-4">Click to start scanning</p>
+                      <p className="text-muted-foreground">Click to start scanning</p>
                     </div>
                   ) : (
                     <div className="text-center">
-                      <div className="w-48 h-48 bg-card rounded-lg border-2 border-primary animate-pulse mb-4"></div>
+                      <div className="w-32 h-32 bg-card rounded-lg border-2 border-primary animate-pulse mb-4 mx-auto"></div>
                       <p className="text-primary font-medium">Scanning...</p>
                     </div>
                   )}
@@ -125,7 +125,7 @@ const ScanToGive: React.FC = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="Search NGOs..."
-                  className="pl-10 bg-muted border-0"
+                  className="pl-10 bg-muted/30 border-0"
                 />
               </div>
 
