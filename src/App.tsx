@@ -13,6 +13,7 @@ import UserTriggeredGiving from "./pages/UserTriggeredGiving";
 import BurnToGive from "./pages/BurnToGive";
 import Rewards from "./pages/Rewards";
 import DAO from "./pages/DAO";
+import NGODashboard from "./pages/NGODashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/burn-to-give" element={<BurnToGive />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/dao" element={<DAO />} />
+            <Route path="/ngo-dashboard" element={<NGODashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
