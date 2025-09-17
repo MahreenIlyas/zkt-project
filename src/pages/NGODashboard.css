@@ -49,114 +49,102 @@
   @apply flex-1 overflow-auto p-6 space-y-6;
 }
 
-/* Compact Metrics Row */
-.ngo-compact-metrics {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6;
+/* Ultra Compact Metrics Row */
+.ngo-ultra-compact-metrics {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-3 mb-4;
 }
 
-.ngo-compact-card {
-  @apply bg-slate-800 rounded-lg border border-slate-700 p-4;
+.ngo-mini-card {
+  @apply bg-slate-800 rounded-lg border border-slate-700 p-3 h-24;
 }
 
-/* ZKTC Token Compact Card */
-.ngo-compact-label {
-  @apply text-slate-400 text-xs font-medium mb-2;
+.ngo-wide-card {
+  @apply lg:col-span-1 relative;
 }
 
-.ngo-compact-value {
-  @apply text-2xl font-bold text-white mb-1;
+/* Mini Card Elements */
+.ngo-mini-label {
+  @apply text-slate-400 text-xs mb-1;
 }
 
-.ngo-compact-change {
+.ngo-mini-value {
+  @apply text-xl font-bold text-white mb-1;
+}
+
+.ngo-mini-change {
   @apply text-xs text-slate-400;
 }
 
-/* Stats Chart Card */
-.ngo-stats-chart-card {
-  @apply flex items-center justify-between;
+/* Tabs Row */
+.ngo-tabs-row {
+  @apply flex gap-3 mb-1;
 }
 
-.ngo-tabs-section {
-  @apply flex-1;
+.ngo-mini-tab {
+  @apply text-xs text-slate-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0;
 }
 
-.ngo-tab-buttons {
-  @apply flex gap-4 mb-2;
-}
-
-.ngo-tab {
-  @apply text-xs text-slate-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer;
-}
-
-.ngo-tab.active {
+.ngo-mini-tab.active {
   @apply text-white;
 }
 
-.ngo-tab-values {
-  @apply flex gap-4 mb-2;
+/* Values Row */
+.ngo-values-row {
+  @apply flex gap-3 mb-1;
 }
 
-.ngo-tab-value span {
-  @apply text-white text-sm font-medium;
+.ngo-mini-amount {
+  @apply text-white text-xs font-medium;
 }
 
-.ngo-stats-labels {
-  @apply flex items-center gap-2;
+/* Bottom Row */
+.ngo-bottom-row {
+  @apply flex items-center justify-between;
 }
 
-.ngo-stat-label {
+.ngo-zakat-label {
   @apply flex items-center gap-1 text-xs text-slate-400;
 }
 
-.ngo-dot {
-  @apply w-2 h-2 rounded-full;
+.ngo-mini-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-green-400;
 }
 
-.ngo-dot.green {
-  @apply bg-green-400;
+/* Mini Chart */
+.ngo-mini-chart {
+  @apply absolute top-2 right-2;
 }
 
-/* Compact Chart */
-.ngo-compact-chart {
-  @apply flex-shrink-0;
-}
-
-.ngo-donut-chart-compact {
-  @apply w-16 h-16 rounded-full relative flex items-center justify-center;
+.ngo-mini-donut {
+  @apply w-12 h-12 rounded-full relative flex items-center justify-center;
   background: conic-gradient(from 0deg, #f97316 60%, #ef4444 60% 85%, #22c55e 85%);
 }
 
-.ngo-chart-inner-compact {
-  @apply w-12 h-12 bg-slate-800 rounded-full flex flex-col items-center justify-center;
-}
-
-.ngo-chart-text {
-  @apply text-center;
+.ngo-mini-center {
+  @apply w-8 h-8 bg-slate-800 rounded-full flex flex-col items-center justify-center;
 }
 
 .ngo-chart-label {
-  @apply text-xs text-slate-400 block;
+  @apply text-xs text-slate-400 leading-none;
+  font-size: 8px;
 }
 
-.ngo-chart-amount {
-  @apply text-xs text-white font-medium;
+.ngo-chart-value {
+  @apply text-white font-medium leading-none;
+  font-size: 8px;
 }
 
-/* Crescent Badges Card */
-.ngo-badges-card {
-  @apply text-center;
+/* Mini Crescents */
+.ngo-mini-crescents {
+  @apply flex justify-center gap-0.5 my-1;
 }
 
-.ngo-crescent-icons {
-  @apply flex justify-center gap-1 my-3;
+.ngo-mini-crescent {
+  @apply text-sm;
 }
 
-.ngo-crescent {
-  @apply text-lg;
-}
-
-.ngo-badge-count {
-  @apply text-white font-medium text-sm;
+.ngo-mini-count {
+  @apply text-white font-medium text-xs text-center;
 }
 
 /* Sections */
