@@ -49,53 +49,64 @@ const NGODashboard: React.FC = () => {
 
         {/* Main Content */}
         <main className="ngo-content">
-          {/* Top Metrics Row */}
-          <div className="ngo-metrics-grid">
+          {/* Compact Top Metrics Row */}
+          <div className="ngo-compact-metrics">
             {/* ZKTC Token Card */}
-            <div className="ngo-metric-card ngo-token-main">
-              <div className="ngo-metric-header">
-                <span className="ngo-metric-title">ZKTC Token</span>
-              </div>
-              <div className="ngo-metric-value">$1320.40</div>
-              <div className="ngo-metric-change negative">-5.28% since last week</div>
+            <div className="ngo-compact-card">
+              <div className="ngo-compact-label">ZKTC Token</div>
+              <div className="ngo-compact-value">$1320.40</div>
+              <div className="ngo-compact-change">+0.78% decrease in 24h</div>
             </div>
 
-            {/* Stats Card with Chart */}
-            <div className="ngo-metric-card ngo-stats-with-chart">
-              <div className="ngo-stats-list">
-                <div className="ngo-stat-row">
-                  <span className="ngo-stat-amount">ZKTC1,000</span>
-                  <span className="ngo-stat-desc">• donations</span>
+            {/* Stats Card with Tabs and Chart */}
+            <div className="ngo-compact-card ngo-stats-chart-card">
+              <div className="ngo-tabs-section">
+                <div className="ngo-tab-buttons">
+                  <button className="ngo-tab active">Daily</button>
+                  <button className="ngo-tab">Weekly</button>
+                  <button className="ngo-tab">Monthly</button>
                 </div>
-                <div className="ngo-stat-row">
-                  <span className="ngo-stat-amount">ZKTC53,000</span>
-                  <span className="ngo-stat-desc">• zakat</span>
+                <div className="ngo-tab-values">
+                  <div className="ngo-tab-value">
+                    <span>ZK31,000</span>
+                  </div>
+                  <div className="ngo-tab-value">
+                    <span>ZK251,000</span>
+                  </div>
+                  <div className="ngo-tab-value">
+                    <span>ZK915,200</span>
+                  </div>
                 </div>
-                <div className="ngo-stat-row">
-                  <span className="ngo-stat-amount">ZKTC15,200</span>
+                <div className="ngo-stats-labels">
+                  <div className="ngo-stat-label">
+                    <span className="ngo-dot green"></span>
+                    Zakat's
+                  </div>
                 </div>
               </div>
-              <div className="ngo-chart-container">
-                <div className="ngo-donut-chart">
-                  <div className="ngo-chart-inner">
-                    <span className="ngo-chart-percent">65%</span>
+              <div className="ngo-compact-chart">
+                <div className="ngo-donut-chart-compact">
+                  <div className="ngo-chart-inner-compact">
+                    <div className="ngo-chart-text">
+                      <span className="ngo-chart-label">Activities</span>
+                      <span className="ngo-chart-amount">ZKTC26,000</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Conversion Balances Card */}
-            <div className="ngo-metric-card ngo-conversion-balances">
-              <div className="ngo-metric-header">
-                <span className="ngo-metric-title small">Your Conversion Balances</span>
+            {/* Crescent Badges Card */}
+            <div className="ngo-compact-card ngo-badges-card">
+              <div className="ngo-compact-label">Your Crescent Badges</div>
+              <div className="ngo-crescent-icons">
+                <span className="ngo-crescent">🌙</span>
+                <span className="ngo-crescent">🌙</span>
+                <span className="ngo-crescent">🌙</span>
+                <span className="ngo-crescent">🌙</span>
+                <span className="ngo-crescent">🌙</span>
               </div>
-              <div className="ngo-moon-icons">
-                <span className="ngo-moon">🌙</span>
-                <span className="ngo-moon">🌙</span>
-                <span className="ngo-moon">🌙</span>
-                <span className="ngo-moon">🌙</span>
-              </div>
-              <div className="ngo-balance-count">0/6</div>
+              <div className="ngo-badge-count">6/6</div>
             </div>
           </div>
 
