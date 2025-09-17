@@ -50,49 +50,52 @@ const NGODashboard: React.FC = () => {
         {/* Main Content */}
         <main className="ngo-content">
           {/* Top Metrics Row */}
-          <div className="ngo-top-metrics">
-            <div className="ngo-token-card">
-              <div className="ngo-token-header">
-                <span className="ngo-token-label">ZKTC Token</span>
+          <div className="ngo-metrics-grid">
+            {/* ZKTC Token Card */}
+            <div className="ngo-metric-card ngo-token-main">
+              <div className="ngo-metric-header">
+                <span className="ngo-metric-title">ZKTC Token</span>
               </div>
-              <div className="ngo-token-value">$1320.40</div>
-              <div className="ngo-token-subtitle">-5.28% since last week</div>
+              <div className="ngo-metric-value">$1320.40</div>
+              <div className="ngo-metric-change negative">-5.28% since last week</div>
             </div>
 
-            <div className="ngo-stats-card">
-              <div className="ngo-stats-row">
-                <div className="ngo-stat-item">
-                  <span className="ngo-stat-value">ZKTC1,000</span>
-                  <span className="ngo-stat-label">• donations</span>
+            {/* Stats Card with Chart */}
+            <div className="ngo-metric-card ngo-stats-with-chart">
+              <div className="ngo-stats-list">
+                <div className="ngo-stat-row">
+                  <span className="ngo-stat-amount">ZKTC1,000</span>
+                  <span className="ngo-stat-desc">• donations</span>
                 </div>
-                <div className="ngo-stat-item">
-                  <span className="ngo-stat-value">ZKTC53,000</span>
-                  <span className="ngo-stat-label">• zakat</span>
+                <div className="ngo-stat-row">
+                  <span className="ngo-stat-amount">ZKTC53,000</span>
+                  <span className="ngo-stat-desc">• zakat</span>
                 </div>
-                <div className="ngo-stat-item">
-                  <span className="ngo-stat-value">ZKTC15,200</span>
+                <div className="ngo-stat-row">
+                  <span className="ngo-stat-amount">ZKTC15,200</span>
                 </div>
               </div>
-              <div className="ngo-chart-placeholder">
-                <div className="ngo-circular-chart">
-                  <div className="ngo-chart-center">
-                    <span className="ngo-chart-percentage">65%</span>
+              <div className="ngo-chart-container">
+                <div className="ngo-donut-chart">
+                  <div className="ngo-chart-inner">
+                    <span className="ngo-chart-percent">65%</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="ngo-conversion-card">
-              <div className="ngo-conversion-header">
-                <span className="ngo-conversion-label">Your Conversion Balances</span>
+            {/* Conversion Balances Card */}
+            <div className="ngo-metric-card ngo-conversion-balances">
+              <div className="ngo-metric-header">
+                <span className="ngo-metric-title small">Your Conversion Balances</span>
               </div>
-              <div className="ngo-conversion-icons">
-                <div className="ngo-conversion-icon">🌙</div>
-                <div className="ngo-conversion-icon">🌙</div>
-                <div className="ngo-conversion-icon">🌙</div>
-                <div className="ngo-conversion-icon">🌙</div>
+              <div className="ngo-moon-icons">
+                <span className="ngo-moon">🌙</span>
+                <span className="ngo-moon">🌙</span>
+                <span className="ngo-moon">🌙</span>
+                <span className="ngo-moon">🌙</span>
               </div>
-              <div className="ngo-conversion-value">0/6</div>
+              <div className="ngo-balance-count">0/6</div>
             </div>
           </div>
 

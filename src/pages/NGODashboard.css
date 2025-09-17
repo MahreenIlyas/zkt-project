@@ -49,90 +49,102 @@
   @apply flex-1 overflow-auto p-6 space-y-6;
 }
 
-/* Top Metrics Row */
-.ngo-top-metrics {
-  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+/* Metrics Grid */
+.ngo-metrics-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
 }
 
-.ngo-token-card {
-  @apply bg-slate-800 rounded-xl p-6 border border-slate-700;
+.ngo-metric-card {
+  @apply bg-slate-800 rounded-xl border border-slate-700 p-6;
 }
 
-.ngo-token-header {
-  @apply mb-2;
+/* ZKTC Token Card */
+.ngo-token-main {
+  @apply flex flex-col;
 }
 
-.ngo-token-label {
-  @apply text-slate-400 text-sm;
+.ngo-metric-header {
+  @apply mb-3;
 }
 
-.ngo-token-value {
-  @apply text-3xl font-bold text-white mb-1;
+.ngo-metric-title {
+  @apply text-slate-400 text-sm font-medium;
 }
 
-.ngo-token-subtitle {
-  @apply text-slate-400 text-sm;
+.ngo-metric-title.small {
+  @apply text-xs;
 }
 
-.ngo-stats-card {
-  @apply bg-slate-800 rounded-xl p-6 border border-slate-700 flex flex-col justify-between;
+.ngo-metric-value {
+  @apply text-3xl font-bold text-white mb-2;
 }
 
-.ngo-stats-row {
-  @apply space-y-2 mb-4;
+.ngo-metric-change {
+  @apply text-sm;
 }
 
-.ngo-stat-item {
+.ngo-metric-change.negative {
+  @apply text-red-400;
+}
+
+.ngo-metric-change.positive {
+  @apply text-green-400;
+}
+
+/* Stats with Chart Card */
+.ngo-stats-with-chart {
+  @apply flex items-center justify-between;
+}
+
+.ngo-stats-list {
+  @apply flex flex-col space-y-3 flex-1;
+}
+
+.ngo-stat-row {
   @apply flex items-center gap-2;
 }
 
-.ngo-stat-value {
-  @apply text-white font-medium;
+.ngo-stat-amount {
+  @apply text-white font-semibold text-sm;
 }
 
-.ngo-stat-label {
+.ngo-stat-desc {
   @apply text-slate-400 text-sm;
 }
 
-.ngo-chart-placeholder {
-  @apply flex justify-center;
+/* Donut Chart */
+.ngo-chart-container {
+  @apply flex-shrink-0;
 }
 
-.ngo-circular-chart {
-  @apply w-16 h-16 rounded-full border-4 border-slate-600 relative flex items-center justify-center;
-  background: conic-gradient(from 0deg, #06b6d4 65%, #334155 65%);
+.ngo-donut-chart {
+  @apply w-20 h-20 rounded-full relative flex items-center justify-center;
+  background: conic-gradient(from 0deg, #06b6d4 65%, #374151 65%);
 }
 
-.ngo-chart-center {
-  @apply w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center;
+.ngo-chart-inner {
+  @apply w-14 h-14 bg-slate-800 rounded-full flex items-center justify-center;
 }
 
-.ngo-chart-percentage {
+.ngo-chart-percent {
   @apply text-white text-sm font-bold;
 }
 
-.ngo-conversion-card {
-  @apply bg-slate-800 rounded-xl p-6 border border-slate-700;
+/* Conversion Balances Card */
+.ngo-conversion-balances {
+  @apply flex flex-col items-center text-center;
 }
 
-.ngo-conversion-header {
-  @apply mb-4;
+.ngo-moon-icons {
+  @apply flex gap-1 my-4;
 }
 
-.ngo-conversion-label {
-  @apply text-slate-400 text-sm;
+.ngo-moon {
+  @apply text-xl;
 }
 
-.ngo-conversion-icons {
-  @apply flex gap-2 mb-3;
-}
-
-.ngo-conversion-icon {
-  @apply text-lg;
-}
-
-.ngo-conversion-value {
-  @apply text-white font-medium;
+.ngo-balance-count {
+  @apply text-white font-medium text-lg;
 }
 
 /* Sections */
