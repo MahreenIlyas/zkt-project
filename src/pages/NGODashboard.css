@@ -51,7 +51,7 @@
 
 /* Ultra Compact Metrics Row */
 .ngo-ultra-compact-metrics {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-3 mb-4;
+  @apply grid grid-cols-3 gap-3 mb-4;
 }
 
 .ngo-mini-card {
