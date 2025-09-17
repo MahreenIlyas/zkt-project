@@ -55,7 +55,7 @@
 }
 
 .ngo-mini-card {
-  @apply bg-slate-800 rounded-lg border border-slate-700 p-3 h-24;
+  @apply bg-slate-800 rounded-lg border border-slate-700 p-4 h-28 flex flex-col justify-between;
 }
 
 .ngo-wide-card {
@@ -64,11 +64,11 @@
 
 /* Mini Card Elements */
 .ngo-mini-label {
-  @apply text-slate-400 text-xs mb-1;
+  @apply text-slate-400 text-xs mb-2;
 }
 
 .ngo-mini-value {
-  @apply text-xl font-bold text-white mb-1;
+  @apply text-2xl font-bold text-white mb-1;
 }
 
 .ngo-mini-change {
@@ -77,11 +77,11 @@
 
 /* Tabs Row */
 .ngo-tabs-row {
-  @apply flex gap-3 mb-1;
+  @apply flex gap-4 mb-2;
 }
 
 .ngo-mini-tab {
-  @apply text-xs text-slate-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0;
+  @apply text-xs text-slate-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 font-medium;
 }
 
 .ngo-mini-tab.active {
@@ -90,16 +90,16 @@
 
 /* Values Row */
 .ngo-values-row {
-  @apply flex gap-3 mb-1;
+  @apply flex gap-4 mb-2;
 }
 
 .ngo-mini-amount {
-  @apply text-white text-xs font-medium;
+  @apply text-white text-sm font-semibold;
 }
 
 /* Bottom Row */
 .ngo-bottom-row {
-  @apply flex items-center justify-between;
+  @apply flex items-center justify-between mt-auto;
 }
 
 .ngo-zakat-label {
@@ -136,15 +136,15 @@
 
 /* Mini Crescents */
 .ngo-mini-crescents {
-  @apply flex justify-center gap-0.5 my-1;
+  @apply flex justify-center gap-1 my-2 flex-1;
 }
 
 .ngo-mini-crescent {
-  @apply text-sm;
+  @apply text-lg;
 }
 
 .ngo-mini-count {
-  @apply text-white font-medium text-xs text-center;
+  @apply text-white font-semibold text-sm text-center mt-auto;
 }
 
 /* Sections */
