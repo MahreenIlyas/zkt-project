@@ -14,22 +14,7 @@ import {
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 
-const sidebarItems = [
-  { icon: Home, label: 'Dashboard', path: '/dashboard' },
-  { 
-    icon: Heart, 
-    label: 'Donations', 
-    path: '/donations',
-    subItems: [
-      { label: 'HTG', path: '/donations' },
-      { label: 'STG', path: '/scan-to-give' }, 
-      { label: 'UTG', path: '/user-triggered-giving' },
-      { label: 'BTG', path: '/burn-to-give' },
-    ]
-  },
-  { icon: Trophy, label: 'Rewards', path: '/rewards' },
-  { icon: Target, label: 'DAO', path: '/dao' },
-];
+const sidebarItems: any[] = [];
 
 const Sidebar: React.FC = () => {
   return (
@@ -45,26 +30,8 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Enhanced Navigation */}
+      {/* Navigation removed per user request */}
       <nav className="flex-1 px-2 py-6 relative z-10">
-        <ul className="space-y-3">
-          {sidebarItems.map((item, index) => (
-            <li key={index}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 text-muted-foreground hover:text-foreground group relative overflow-hidden",
-                    "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/10 before:to-primary-glow/5 before:opacity-0 before:transition-all before:duration-300 hover:before:opacity-100",
-                    isActive && "bg-gradient-to-r from-primary/15 to-primary-glow/10 text-primary-foreground shadow-lg before:opacity-100"
-                  )
-                }
-              >
-                <item.icon className="w-5 h-5 relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-primary" />
-              </NavLink>
-            </li>
-          ))}
-        </ul>
       </nav>
 
       {/* Enhanced Bottom Section */}
