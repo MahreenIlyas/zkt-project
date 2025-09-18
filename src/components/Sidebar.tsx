@@ -23,9 +23,18 @@ const Sidebar: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5 opacity-50"></div>
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      {/* Favicon Section */}
+      {/* ZakPay Icon Section */}
       <div className="p-4 border-b border-border/50 relative z-10 flex justify-center">
-        <img src="/favicon.ico" alt="App Icon" className="w-8 h-8" />
+        <div className="w-8 h-8 relative">
+          {/* Primary diamond with gradient - smaller version of logo */}
+          <div className="absolute top-0 left-0 w-4 h-4 bg-gradient-to-br from-primary to-primary-glow transform rotate-45 rounded-sm shadow-md"></div>
+          
+          {/* Secondary geometric shape */}
+          <div className="absolute bottom-0 right-0 w-5 h-3 bg-gradient-to-r from-foreground to-muted-foreground rounded-sm shadow-sm"></div>
+          
+          {/* Accent dot */}
+          <div className="absolute top-1 right-0 w-1 h-1 bg-accent rounded-full"></div>
+        </div>
       </div>
 
       {/* NGO Dashboard Navigation */}
