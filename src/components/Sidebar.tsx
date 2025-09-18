@@ -23,9 +23,11 @@ const Sidebar: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5 opacity-50"></div>
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      {/* Logo Section */}
+      {/* Favicon Section */}
       <div className="p-4 border-b border-border/50 relative z-10 flex justify-center">
-        <Logo />
+        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+          <div className="w-4 h-4 bg-white rounded-sm"></div>
+        </div>
       </div>
 
       {/* NGO Dashboard Navigation */}
