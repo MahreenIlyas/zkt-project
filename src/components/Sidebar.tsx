@@ -25,13 +25,27 @@ const Sidebar: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       {/* Logo Section */}
       <div className="p-4 border-b border-border/50 relative z-10 flex justify-center">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <Home className="w-5 h-5 text-primary-foreground" />
-        </div>
+        <Logo />
       </div>
 
-      {/* Navigation removed per user request */}
+      {/* NGO Dashboard Navigation */}
       <nav className="flex-1 px-2 py-6 relative z-10">
+        <ul className="space-y-3">
+          <li>
+            <NavLink
+              to="/ngo-dashboard"
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 text-muted-foreground hover:text-foreground group relative overflow-hidden",
+                  "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/10 before:to-primary-glow/5 before:opacity-0 before:transition-all before:duration-300 hover:before:opacity-100",
+                  isActive && "bg-gradient-to-r from-primary/15 to-primary-glow/10 text-primary-foreground shadow-lg before:opacity-100"
+                )
+              }
+            >
+              <Home className="w-5 h-5 relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:text-primary" />
+            </NavLink>
+          </li>
+        </ul>
       </nav>
 
       {/* Enhanced Bottom Section */}
