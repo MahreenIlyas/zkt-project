@@ -25,9 +25,7 @@ const Sidebar: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       {/* Favicon Section */}
       <div className="p-4 border-b border-border/50 relative z-10 flex justify-center">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <div className="w-4 h-4 bg-white rounded-sm"></div>
-        </div>
+        <img src="/favicon.ico" alt="App Icon" className="w-8 h-8" />
       </div>
 
       {/* NGO Dashboard Navigation */}
